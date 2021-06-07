@@ -1,15 +1,37 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import './App.css';
-import './RegisterForm'
+import './RegisterForm';
 import RegisterForm from "./RegisterForm";
+import axios from "axios";
+import NavigationBar from "./components/NavigationBar";
+import {Container, Row, Col} from "react-bootstrap";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import UserAdd from "./components/model/user/UserAdd";
+import UsersList from "./components/model/user/UsersList";
+import Hello from "./components/Hello";
 
 function App() {
 
+    const marginTop = {
+        marginTop: "20px"
+    };
+
     return (
         <div className="App">
-            <p>Hello world!</p>
-            <p>Register</p>
-            <RegisterForm />
+            <Router>
+                <NavigationBar/>
+                <Container>
+                    <Row>
+                        <Col lg={12} style={marginTop}>
+                            <Switch>
+                                <Route path="/users" exact component={UsersList}/>
+                                <Route path="/add/user" exact component={UserAdd}/>
+                                <Route path="/" exact component={Hello}/>
+                            </Switch>
+                        </Col>
+                    </Row>
+                </Container>
+            </Router>
         </div>
     );
 }
