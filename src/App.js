@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from "react";
 import './App.css';
-import './RegisterForm';
-import RegisterForm from "./RegisterForm";
 import axios from "axios";
 import NavigationBar from "./components/NavigationBar";
 import {Container, Row, Col} from "react-bootstrap";
@@ -9,6 +7,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import UserAdd from "./components/model/user/UserAdd";
 import UsersList from "./components/model/user/UsersList";
 import Hello from "./components/Hello";
+import LoginForm from "./components/LoginForm"
 
 function App() {
 
@@ -27,6 +26,7 @@ function App() {
                                 <Route path="/users" exact component={UsersList}/>
                                 <Route path="/add/user" exact component={UserAdd}/>
                                 <Route path="/" exact component={Hello}/>
+                                <Route path="/login" exact component={LoginForm}/>
                             </Switch>
                         </Col>
                     </Row>
