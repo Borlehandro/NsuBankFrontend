@@ -27,6 +27,7 @@ function App() {
                                 <Route path="/add/user" exact component={UserAdd}/>
                                 <Route path="/" exact component={Hello}/>
                                 <Route path="/login" exact component={LoginForm}/>
+                                <Route path="/add/user" exact component={UserAdd}/>
                             </Switch>
                         </Col>
                     </Row>

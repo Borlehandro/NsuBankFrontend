@@ -30,11 +30,11 @@ class NavigationBar extends React.Component {
                                 <NavDropdown.Item href="#action/3.3">History of particular credit</NavDropdown.Item>
                             </NavDropdown>
                             <NavDropdown title="Add" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Add new user</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.1">Add new order</NavDropdown.Item>
+                                <NavDropdown.Item href="add/user">Add new user</NavDropdown.Item>
+                                <NavDropdown.Item href="add/order">Add new order</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.3">Add payment</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Give credit</NavDropdown.Item>
+                                <NavDropdown.Item href="add/payment">Add payment</NavDropdown.Item>
+                                <NavDropdown.Item href="give-credit">Give credit</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>

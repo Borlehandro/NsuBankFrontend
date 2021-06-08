@@ -1,5 +1,6 @@
 import React from "react";
 import {Button, Card, Col, Form, Row} from "react-bootstrap";
+import axios from "axios";
 
 class UserAdd extends React.Component {
 
@@ -11,7 +12,10 @@ class UserAdd extends React.Component {
     }
 
     submitUser(event) {
-        alert(this.state.username);
+        axios.post("http://localhost:8080/crud/client/create", {fullName : this.state.username})
+            .then(response => {
+                alert(response.data)
+            })
         event.preventDefault();
     }
 

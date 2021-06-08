@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://172.18.0.3:8080/";
+const API_URL = "http://localhost:8080/";
 
 class AuthService {
 
@@ -11,7 +11,9 @@ class AuthService {
                 password
             })
             .then(response => {
+                alert("Get response")
                 if (response.data.accessToken) {
+                    alert("Response is OK")
                     localStorage.setItem("user", JSON.stringify(response.data));
                 }
 

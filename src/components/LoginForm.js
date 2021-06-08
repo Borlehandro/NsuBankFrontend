@@ -1,6 +1,7 @@
 import React from "react";
 import {Button, Card, Form} from "react-bootstrap";
 import AuthService from "../services/AuthService";
+import axios from "axios";
 
 class LoginForm extends React.Component {
 
@@ -12,26 +13,14 @@ class LoginForm extends React.Component {
     }
 
     submit(event) {
-        AuthService.login(this.state.username, this.state.password).then(
-            () => {
-                console.log("OK")
-                this.props.history.push("/profile");
-                window.location.reload();
-            },
-            error => {
-                const resMessage =
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                    error.message ||
-                    error.toString();
+        this.login(this.state.username, this.state.password)
+        event.preventDefault()
+    }
 
-                this.setState({
-                    loading: false,
-                    message: resMessage
-                });
-                event.preventDefault();
-            });
+    login(username, password) {
+        axios.post("http://localhost:8080/login", {username, password}).then(
+            response => console.log(response.headers)
+        )
     }
 
     change(event) {
