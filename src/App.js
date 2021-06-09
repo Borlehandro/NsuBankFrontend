@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import './App.css';
-import axios from "axios";
 import NavigationBar from "./components/NavigationBar";
 import {Container, Row, Col} from "react-bootstrap";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
@@ -11,6 +10,7 @@ import LoginForm from "./components/LoginForm"
 import UserEdit from "./components/model/user/UserEdit";
 import GiveCredit from "./components/business/GiveCredit";
 import SetOffer from "./components/business/SetOffer";
+import ProcessPayment from "./components/business/ProcessPayment";
 
 function App() {
 
@@ -34,6 +34,7 @@ function App() {
                                 <Route path="/edit/user/:id" exact component={UserEdit}/>
                                 <Route path="/give/credit/:id/:offerId" exact component={GiveCredit}/>
                                 <Route path="/give/offer/:id" exact component={SetOffer}/>
+                                <Route path="/pay/:id/:creditId" exact component={ProcessPayment}/>
                             </Switch>
                         </Col>
                     </Row>

@@ -95,7 +95,7 @@ class UsersList extends React.Component {
                                         <td>
                                             <ButtonGroup>
                                                 <Link to={"/edit/user/" + user.id}
-                                                      className="btn btn-sm btn-outline-primary">
+                                                      className="btn btn-outline-primary">
                                                     Edit
                                                 </Link>
                                                 <Button variant="outline-danger"
@@ -105,14 +105,22 @@ class UsersList extends React.Component {
                                                 {
                                                     user.offer !== null &&
                                                     <Link to={"/give/credit/" + user.id + "/" + user.offer.id}
-                                                          className="btn btn-sm btn-outline-success">
+                                                          className="btn btn-outline-success">
                                                         Give credit
                                                     </Link>
                                                 }
                                                 <Link to={"/give/offer/" + user.id}
-                                                      className="btn btn-sm btn-outline-success">
+                                                      className="btn btn-outline-primary">
                                                     Set offer
                                                 </Link>
+                                                {
+                                                    user.activeCredit !== null &&
+                                                    <Link to={"/pay/" + user.id + "/" + user.activeCredit.id}
+                                                          className="btn btn-outline-success">
+                                                        Pay
+                                                    </Link>
+                                                }
+
                                             </ButtonGroup>
                                         </td>
                                     </tr>

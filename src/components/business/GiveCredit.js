@@ -42,7 +42,7 @@ class GiveCredit extends React.Component {
         return (
             <Card>
                 <Card.Header>
-                    <h3>Edit User</h3>
+                    <h3>Give credit</h3>
                 </Card.Header>
                 <Form onSubmit={this.submitCredit}>
                     <Card.Body>

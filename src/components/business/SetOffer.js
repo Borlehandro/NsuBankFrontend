@@ -36,7 +36,7 @@ class SetOffer extends React.Component {
         return (
             <Card>
                 <Card.Header>
-                    <h3>Edit User</h3>
+                    <h3>Set offer</h3>
                 </Card.Header>
                 <Form onSubmit={this.submitCredit}>
                     <Card.Body>
