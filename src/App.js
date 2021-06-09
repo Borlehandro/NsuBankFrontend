@@ -10,6 +10,7 @@ import Hello from "./components/Hello";
 import LoginForm from "./components/LoginForm"
 import UserEdit from "./components/model/user/UserEdit";
 import GiveCredit from "./components/business/GiveCredit";
+import SetOffer from "./components/business/SetOffer";
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
                                 <Route path="/add/user" exact component={UserAdd}/>
                                 <Route path="/edit/user/:id" exact component={UserEdit}/>
                                 <Route path="/give/credit/:id/:offerId" exact component={GiveCredit}/>
+                                <Route path="/give/offer/:id" exact component={SetOffer}/>
                             </Switch>
                         </Col>
                     </Row>

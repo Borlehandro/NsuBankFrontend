@@ -88,7 +88,9 @@ class UsersList extends React.Component {
                                         <td> {user.offer !== null &&
                                         user.offer.id
                                         }</td>
-                                        <td>{user.activeCredit}</td>
+                                        <td>{user.activeCredit !== null &&
+                                        user.activeCredit.id
+                                        }</td>
                                         <td>{user.clientStatus}</td>
                                         <td>
                                             <ButtonGroup>
@@ -99,14 +101,18 @@ class UsersList extends React.Component {
                                                 <Button variant="outline-danger"
                                                         onClick={this.deleteUser.bind(this, user.id)}>
                                                     Delete
-                                                </Button> {
-                                                user.offer !== null &&
-                                                <Link to={"/give/credit/" + user.id + "/" + user.offer.id}
+                                                </Button>
+                                                {
+                                                    user.offer !== null &&
+                                                    <Link to={"/give/credit/" + user.id + "/" + user.offer.id}
+                                                          className="btn btn-sm btn-outline-success">
+                                                        Give credit
+                                                    </Link>
+                                                }
+                                                <Link to={"/give/offer/" + user.id}
                                                       className="btn btn-sm btn-outline-success">
-                                                    Give credit
+                                                    Set offer
                                                 </Link>
-                                            }
-                                                <Button variant="outline-success">Set offer</Button>
                                             </ButtonGroup>
                                         </td>
                                     </tr>
