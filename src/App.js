@@ -8,6 +8,7 @@ import UserAdd from "./components/model/user/UserAdd";
 import UsersList from "./components/model/user/UsersList";
 import Hello from "./components/Hello";
 import LoginForm from "./components/LoginForm"
+import UserEdit from "./components/model/user/UserEdit";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
                                 <Route path="/" exact component={Hello}/>
                                 <Route path="/login" exact component={LoginForm}/>
                                 <Route path="/add/user" exact component={UserAdd}/>
+                                <Route path="/edit/user/:id" exact component={UserEdit}/>
                             </Switch>
                         </Col>
                     </Row>
