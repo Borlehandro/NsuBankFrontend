@@ -56,7 +56,7 @@ class UsersList extends React.Component {
 
     newPage(pageNumber) {
         console.log("New page " + pageNumber)
-        this.setState(({currentPage : pageNumber}), () => {
+        this.setState(({currentPage: pageNumber}), () => {
             console.log("Current:" + this.state.currentPage)
             this.updateList()
         })
@@ -85,7 +85,9 @@ class UsersList extends React.Component {
                                     <tr key={user.id}>
                                         <td>{user.id}</td>
                                         <td>{user.fullName}</td>
-                                        <td>{user.offer}</td>
+                                        <td> {user.offer !== null &&
+                                        user.offer.id
+                                        }</td>
                                         <td>{user.activeCredit}</td>
                                         <td>{user.clientStatus}</td>
                                         <td>
@@ -97,8 +99,13 @@ class UsersList extends React.Component {
                                                 <Button variant="outline-danger"
                                                         onClick={this.deleteUser.bind(this, user.id)}>
                                                     Delete
-                                                </Button>
-                                                <Button variant="outline-success">Give credit</Button>
+                                                </Button> {
+                                                user.offer !== null &&
+                                                <Link to={"/give/credit/" + user.id + "/" + user.offer.id}
+                                                      className="btn btn-sm btn-outline-success">
+                                                    Give credit
+                                                </Link>
+                                            }
                                                 <Button variant="outline-success">Set offer</Button>
                                             </ButtonGroup>
                                         </td>
