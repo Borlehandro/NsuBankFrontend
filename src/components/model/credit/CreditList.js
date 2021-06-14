@@ -4,17 +4,16 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import AppConfigs from "../../../AppConfigs";
 
-class UsersList extends React.Component {
+class CreditList extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            users: [],
+            credits: [],
             currentPage: 0,
             pageSize: 5,
             totalPages: 1
         }
-        console.log(AppConfigs.API_URL)
     }
 
     componentDidMount() {
@@ -22,7 +21,7 @@ class UsersList extends React.Component {
     }
 
     updateList() {
-        axios.get(AppConfigs.USER_LIST, {
+        axios.get(AppConfigs.CREDITS_LIST, {
             params: {
                 page: this.state.currentPage,
                 size: this.state.pageSize
@@ -32,7 +31,7 @@ class UsersList extends React.Component {
                 console.log(response.data);
                 console.log(this.state.pageSize);
                 this.setState({
-                    users: response.data.content,
+                    credits: response.data.content,
                     currentPage: response.data.pageable.pageNumber,
                     pageSize: response.data.pageable.pageSize,
                     totalPages: response.data.totalPages
@@ -41,8 +40,8 @@ class UsersList extends React.Component {
         )
     }
 
-    deleteUser(id) {
-        axios.post(AppConfigs.DELETE_USER, null, {
+    deleteCredit(id) {
+        axios.post(AppConfigs.DELETE_CREDIT, null, {
             params: {
                 id
             }
@@ -50,7 +49,7 @@ class UsersList extends React.Component {
             response => {
                 console.log(response.data)
                 this.setState({
-                    users: this.state.users.filter(user => user.id !== id)
+                    credits: this.state.credits.filter(user => user.id !== id)
                 })
             }
         )
@@ -68,56 +67,50 @@ class UsersList extends React.Component {
         return (
             <div>
                 <Card>
-                    <Card.Header>Users List</Card.Header>
+                    <Card.Header>Credits List</Card.Header>
                     <Card.Body>
                         <Table striped bordered hover>
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Full name</th>
-                                <th>Offer</th>
-                                <th>Active credit</th>
-                                <th>Client status</th>
-                                <th>Action</th>
+                                <th>Client id</th>
+                                <th>Offer id</th>
+                                <th>Start date</th>
+                                <th>Month period</th>
+                                <th>Sum</th>
+                                <th>Cash inflow</th>
+                                <th>Profit margin</th>
+                                <th>Balance</th>
+                                <th>Status</th>
                             </tr>
                             </thead>
                             <tbody>
                             {
-                                this.state.users.map(user =>
-                                    <tr key={user.id}>
-                                        <td>{user.id}</td>
-                                        <td>{user.fullName}</td>
-                                        <td> {user.offer !== null &&
-                                        user.offer.id
-                                        }</td>
-                                        <td>{user.activeCredit !== null &&
-                                        user.activeCredit.id
-                                        }</td>
-                                        <td>{user.clientStatus}</td>
+                                this.state.credits.map(credit =>
+                                    <tr key={credit.id}>
+                                        <td>{credit.id}</td>
+                                        <td>{credit.client.id}</td>
+                                        <td> {credit.offer.id}</td>
+                                        <td>{credit.startDate}</td>
+                                        <td>{credit.monthPeriod}</td>
+                                        <td>{credit.sum}</td>
+                                        <td>{credit.cashInflow}</td>
+                                        <td>{credit.profitMargin}</td>
+                                        <td>{credit.balance}</td>
+                                        <td>{credit.status}</td>
                                         <td>
                                             <ButtonGroup>
-                                                <Link to={"/edit/user/" + user.id}
+                                                <Link to={"/edit/credit/" + credit.id}
                                                       className="btn btn-outline-primary">
                                                     Edit
                                                 </Link>
                                                 <Button variant="outline-danger"
-                                                        onClick={this.deleteUser.bind(this, user.id)}>
+                                                        onClick={this.deleteCredit.bind(this, credit.id)}>
                                                     Delete
                                                 </Button>
+
                                                 {
-                                                    user.offer !== null &&
-                                                    <Link to={"/give/credit/" + user.id + "/" + user.offer.id}
-                                                          className="btn btn-outline-success">
-                                                        Give credit
-                                                    </Link>
-                                                }
-                                                <Link to={"/give/offer/" + user.id}
-                                                      className="btn btn-outline-primary">
-                                                    Set offer
-                                                </Link>
-                                                {
-                                                    user.activeCredit !== null &&
-                                                    <Link to={"/pay/" + user.id + "/" + user.activeCredit.id}
+                                                    <Link to={"/pay/" + credit.client.id + "/" + credit.id}
                                                           className="btn btn-outline-success">
                                                         Pay
                                                     </Link>
@@ -146,4 +139,4 @@ class UsersList extends React.Component {
     }
 }
 
-export default UsersList;
+export default CreditList;

@@ -1,6 +1,7 @@
 import React from "react";
-import {Button, Card, Col, Form, Row} from "react-bootstrap";
+import {Button, Card, Form, Row} from "react-bootstrap";
 import axios from "axios";
+import AppConfigs from "../../../AppConfigs";
 
 class UserAdd extends React.Component {
 
@@ -12,7 +13,7 @@ class UserAdd extends React.Component {
     }
 
     submitUser(event) {
-        axios.post("http://localhost:8080/crud/client/create", {fullName : this.state.username})
+        axios.post(AppConfigs.ADD_USER, {fullName : this.state.username})
             .then(response => {
                 alert(response.data)
             })

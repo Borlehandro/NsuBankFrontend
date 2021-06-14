@@ -9,15 +9,22 @@ class UserEdit extends React.Component {
         super(prop);
         this.state = {
             id : 0,
-            fullName : "",
-            clientStatus : ""
+            clientId : 0,
+            offerId : 0,
+            startDate: '',
+            monthPeriod : 0,
+            sum : 0,
+            cashInflow : 0,
+            profitMargin : 0,
+            balance : 0,
+            status : ''
         }
-        this.userChange = this.userChange.bind(this);
-        this.submitUser = this.submitUser.bind(this)
+        this.creditChange = this.creditChange.bind(this);
+        this.submitCredit = this.submitCredit.bind(this)
     }
 
-    submitUser(event) {
-        axios.post(AppConfigs.EDIT_USER,
+    submitCredit(event) {
+        axios.post(AppConfigs.EDIT_CREDIT,
             {
                 id : this.state.id,
                 fullName : this.state.fullName,
@@ -29,24 +36,31 @@ class UserEdit extends React.Component {
         event.preventDefault();
     }
 
-    userChange(event) {
+    creditChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
 
     componentDidMount() {
-        const userId = +this.props.match.params.id
-        if(userId) {
-            axios.get(AppConfigs.USER_FIND, {params : {id : userId}})
+        const creditId = +this.props.match.params.id
+        if(creditId) {
+            axios.get(AppConfigs.CREDIT_FIND, {params : {id : creditId}})
                 .then(
                     response => {
                         console.log(response.data);
                         let data = response.data;
                         this.setState({
                             id : data.id,
-                            fullName : data.fullName,
-                            clientStatus : data.clientStatus
+                            clientId : data.client.id,
+                            offerId : data.offer.id,
+                            startDate: data.startDate,
+                            monthPeriod : data.monthPeriod,
+                            sum : data.sum,
+                            cashInflow : data.cashInflow,
+                            profitMargin : data.profitMargin,
+                            balance : data.balance,
+                            status : data.status
                         })
                     }
                 )
@@ -59,7 +73,7 @@ class UserEdit extends React.Component {
                 <Card.Header>
                     <h3>Edit User</h3>
                 </Card.Header>
-                <Form onSubmit={this.submitUser}>
+                <Form onSubmit={this.submitCredit}>
                     <Card.Body>
                         <Form.Group className="mb-3" controlId="formUserName">
                             <Row>
@@ -67,7 +81,7 @@ class UserEdit extends React.Component {
                                 <Form.Control type="text"
                                               name="fullName"
                                               value={this.state.fullName}
-                                              onChange={this.userChange}
+                                              onChange={this.creditChange}
                                               placeholder="User name"/>
                             </Row>
                             <Row>
@@ -75,7 +89,7 @@ class UserEdit extends React.Component {
                                 <Form.Control type="text"
                                               name="clientStatus"
                                               value={this.state.clientStatus}
-                                              onChange={this.userChange}
+                                              onChange={this.creditChange}
                                               placeholder="User name"/>
                             </Row>
                         </Form.Group>

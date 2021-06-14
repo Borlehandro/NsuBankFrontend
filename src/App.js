@@ -11,6 +11,8 @@ import UserEdit from "./components/model/user/UserEdit";
 import GiveCredit from "./components/business/GiveCredit";
 import SetOffer from "./components/business/SetOffer";
 import ProcessPayment from "./components/business/ProcessPayment";
+import CreditEdit from "./components/model/credit/CreditEdit";
+import CreditList from "./components/model/credit/CreditList";
 
 function App() {
 
@@ -27,11 +29,13 @@ function App() {
                         <Col lg={12} style={marginTop}>
                             <Switch>
                                 <Route path="/users" exact component={UsersList}/>
+                                <Route path="/credits" exact component={CreditList}/>
                                 <Route path="/add/user" exact component={UserAdd}/>
                                 <Route path="/" exact component={Hello}/>
                                 <Route path="/login" exact component={LoginForm}/>
                                 <Route path="/add/user" exact component={UserAdd}/>
                                 <Route path="/edit/user/:id" exact component={UserEdit}/>
+                                <Route path="/edit/credit/:id" exact component={CreditEdit}/>
                                 <Route path="/give/credit/:id/:offerId" exact component={GiveCredit}/>
                                 <Route path="/give/offer/:id" exact component={SetOffer}/>
                                 <Route path="/pay/:id/:creditId" exact component={ProcessPayment}/>

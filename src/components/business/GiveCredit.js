@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {Button, Card, Form, Row} from "react-bootstrap";
+import AppConfigs from "../../AppConfigs";
 
 class GiveCredit extends React.Component {
 
@@ -18,7 +19,7 @@ class GiveCredit extends React.Component {
     }
 
     submitCredit(event) {
-        axios.post("http://localhost:8080/client/give-credit",
+        axios.post(AppConfigs.GIVE_CREDIT,
             {
                 clientId : this.state.id,
                 offerId : this.state.offerId,

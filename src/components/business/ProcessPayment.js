@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {Button, Card, Form, Row} from "react-bootstrap";
+import AppConfigs from "../../AppConfigs";
 
 class ProcessPayment extends React.Component {
 
@@ -37,7 +38,7 @@ class ProcessPayment extends React.Component {
     }
 
     submitPayment(event) {
-        axios.post("http://localhost:8080/payments/process",
+        axios.post(AppConfigs.PROCESS_PAYMENT,
             {
                 userId : this.state.id,
                 creditId : this.state.creditId,
